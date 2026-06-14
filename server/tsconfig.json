@@ -1,44 +1,41 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    // File Layout
-    // "rootDir": "./src",
-    // "outDir": "./dist",
+    // Compile TypeScript down to ES2020 syntax. Safe default for Node.js — supported
+    // by all modern Node versions without compatibility issues.
+    "target": "ES2020",
 
-    // Environment Settings
-    // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
+    // Use ESM module system (import/export), consistent with the client.
+    // Requires "type": "module" in package.json.
+    "module": "NodeNext",
 
-    // Other Outputs
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    // Tells TypeScript how to resolve modules, must match "module" setting.
+    "moduleResolution": "NodeNext",
 
-    // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+    // Source TypeScript files live in src/
+    "rootDir": "./src",
 
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
+    // Compiled JavaScript output goes to dist/
+    "outDir": "./dist",
 
-    // Recommended Options
+    // Enable all strict type checks. Catches more bugs at compile time.
     "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+
+    // Allows default imports from CommonJS modules that don't have a default export.
+    "esModuleInterop": true,
+
+    // Skip type checking of declaration files in node_modules. Speeds up compilation.
     "skipLibCheck": true,
-  }
+
+    // Ensures imports are case-sensitive across all operating systems.
+    // Prevents bugs that only appear on Linux but not Mac.
+    "forceConsistentCasingInFileNames": true,
+
+    // Allows importing JSON files directly in TypeScript.
+    "resolveJsonModule": true,
+
+    // Generates source maps so debuggers can map compiled JS back to original TS.
+    "sourceMap": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
