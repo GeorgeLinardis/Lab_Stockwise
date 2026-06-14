@@ -1,0 +1,55 @@
+# Dependencies
+node_modules
+client/node_modules
+server/node_modules
+
+# Build output
+dist
+dist-ssr
+build
+client/dist
+server/dist
+
+# md files
+CLAUDE.md
+NOTES.md
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Docker
+docker-compose.override.yml
+
+# Database
+postgres-data
+pgdata
+
+# Redis
+redis-data
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.sw?
+
+# Test coverage
+coverage
+client/coverage
+server/coverage
+
