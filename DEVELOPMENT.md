@@ -24,8 +24,12 @@ Runs on every push and PR to `master`. Skips on docs, images, and markdown chang
 
 | Job | Steps |
 |---|---|
-| Server | install → type-check → build → test |
+| Format | install → prettier check |
+| Server | install → lint → type-check → build → test |
 | Client | install → type-check → lint → build → test |
+| Shared | install → lint → type-check → build → test |
+
+Run `npm run format` from root to auto-fix formatting before committing.
 
 Jobs run in parallel. A failing step fails the pipeline immediately.
 

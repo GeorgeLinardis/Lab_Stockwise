@@ -1,11 +1,11 @@
-import type { Config } from 'jest';
+import type { Config } from "jest";
 
 export default {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
+  preset: "ts-jest",
+  testEnvironment: "node",
   transform: {
-    '^.+\\.ts$': ['ts-jest', { tsconfig: 'tsconfig.test.json' }],
+    "^.+\\.ts$": ["ts-jest", { tsconfig: "tsconfig.test.json" }],
   },
-  testMatch: ['**/*.test.ts'],
+  testMatch: ["**/*.test.ts"],
   clearMocks: true,
 } satisfies Config;
