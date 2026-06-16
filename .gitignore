@@ -14,6 +14,14 @@ server/dist
 CLAUDE.md
 NOTES.md
 
+# ai related
+.superpowers
+design-system
+designs
+docs
+.claude
+
+
 # Environment variables
 .env
 .env.local
