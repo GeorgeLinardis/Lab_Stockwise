@@ -5,6 +5,7 @@
   "workspaces": [
     "client",
     "server",
-    "db"
+    "db",
+    "shared"
   ]
 }

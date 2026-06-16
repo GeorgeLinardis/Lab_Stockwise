@@ -62,3 +62,10 @@ npm run test:watch -w server # watch mode
 npm test -w client           # run once
 npm run test:watch -w client # watch mode (interactive)
 ```
+
+### Shared (Jest)
+
+```bash
+npm test -w shared           # run once
+npm run test:watch -w shared # watch mode
+```
