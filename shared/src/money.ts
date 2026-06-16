@@ -1,17 +1,17 @@
-import currency from 'currency.js';
+import currency from "currency.js";
 
-const LOCALE = 'en';
+const LOCALE = "en";
 
 function getCurrencySymbol(currencyCode: string): string {
   const formatter = new Intl.NumberFormat(LOCALE, {
-    style: 'currency',
+    style: "currency",
     currency: currencyCode,
   });
 
   const parts = formatter.formatToParts(0);
-  const currencyPart = parts.find(part => part.type === 'currency');
+  const currencyPart = parts.find((part) => part.type === "currency");
 
-  return currencyPart ? currencyPart.value : '';
+  return currencyPart ? currencyPart.value : "";
 }
 
 /**
@@ -22,11 +22,11 @@ function getCurrencySymbol(currencyCode: string): string {
  */
 function display(cents: number, currencyCode: string): string {
   if (!Number.isFinite(cents) || !currencyCode) {
-    throw new Error('cents and currencyCode is required');
+    throw new Error("cents and currencyCode is required");
   }
 
   const { maximumFractionDigits } = new Intl.NumberFormat(LOCALE, {
-    style: 'currency',
+    style: "currency",
     currency: currencyCode,
   }).resolvedOptions();
 

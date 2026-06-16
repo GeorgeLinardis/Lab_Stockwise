@@ -4,7 +4,7 @@ name: Security Audit
 # workflow_dispatch allows triggering manually from the Actions UI.
 on:
   schedule:
-    - cron: '0 9 */5 * *'
+    - cron: "0 9 */5 * *"
   workflow_dispatch:
 
 # Read-only — we only install and audit, never write.

@@ -2,11 +2,13 @@
   "name": "@stockwise/shared",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "exports": {
     "./money": "./src/money.ts",
     "./types": "./src/types/index.ts"
   },
   "scripts": {
+    "lint": "eslint .",
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "test": "jest --passWithNoTests",
