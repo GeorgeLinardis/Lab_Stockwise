@@ -3,15 +3,15 @@
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
 ![Pipeline](https://github.com/GeorgeLinardis/Lab_Stockwise/actions/workflows/ci.yml/badge.svg)
 
-> A clean, fast stock evaluation tool for investors who want signal without the noise.
+> A stock evaluation app that scores equities based on financial fundamentals.
 
 ---
 
 ## What it does
 
-Most stock platforms overwhelm you with data. Stockwise does the opposite.
+Stockwise fetches financial data for any ticker and runs it through a set of scoring rules based on key indexes — things like P/E ratio, debt-to-equity, earnings growth, and dividend yield. Each stock gets a composite score so you can quickly assess whether it's worth a closer look.
 
-Search a ticker, get a clear evaluation of the fundamentals, track the stocks you care about, and move on. No ads, no noise, no infinite scroll of financial news.
+The goal is to build something that actually does analysis, not just displays numbers.
 
 ---
 
@@ -21,27 +21,39 @@ Search a ticker, get a clear evaluation of the fundamentals, track the stocks yo
 |---|---|
 | Frontend | React + Vite + TypeScript |
 | Backend | Express + TypeScript |
-| Database | PostgreSQL |
-| Caching | Redis |
+| Database | PostgreSQL + Drizzle ORM |
 | Testing | Jest + React Testing Library |
 
 ---
 
 ## Architecture
 
-_To be added_
+```mermaid
+graph TD
+  Client["Client<br/>React + Vite"]
+  Server["Server<br/>Express + TypeScript"]
+  DB["PostgreSQL"]
+
+  Client -->|REST API| Server
+  Server --> DB
+```
 
 ---
 
 ## Project structure
 
 ```
-lab-untitled-project/
-├── client/         # React + Vite frontend
+stockwise/
+├── client/             # React + Vite frontend
 │   └── src/
-├── server/         # Express API
+├── server/             # Express API
 │   └── src/
-└── README.md
+├── db/                 # Drizzle ORM — schema, migrations, db client
+│   └── src/
+│       ├── schema/
+│       └── migrations/
+├── docker-compose.yml
+└── .env.example
 ```
 
 ---

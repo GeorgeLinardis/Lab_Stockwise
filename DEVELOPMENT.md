@@ -33,6 +33,20 @@ Jobs run in parallel. A failing step fails the pipeline immediately.
 
 ---
 
+## Local Database
+
+Requires Docker. Copy `.env.example` to `.env` and fill in credentials before first run.
+
+```bash
+docker compose up -d              # start PostgreSQL
+
+npm run db:generate -w db         # generate SQL from schema changes
+npm run db:migrate -w db          # apply pending migrations
+npm run db:studio -w db           # open Drizzle Studio UI
+```
+
+---
+
 ## Running Tests
 
 ### Server (Jest + ts-jest)
