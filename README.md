@@ -28,7 +28,7 @@ The goal is to build something that actually does analysis, not just displays nu
 
 | Layer | Technology |
 |---|---|
-| Frontend | React + Vite + TypeScript |
+| Frontend | React + Vite + TypeScript + shadcn/ui |
 | Backend | Express + TypeScript |
 | Database | PostgreSQL + Drizzle ORM |
 | Testing | Jest + React Testing Library |
@@ -55,6 +55,10 @@ graph TD
 stockwise/
 ├── client/             # React + Vite frontend
 │   └── src/
+│       ├── components/
+│       │   └── ui/     # shadcn/ui base components
+│       ├── pages/      # route-level page components
+│       └── lib/        # shared utilities (cn, etc.)
 ├── server/             # Express API
 │   └── src/
 ├── db/                 # Drizzle ORM — schema, migrations, db client

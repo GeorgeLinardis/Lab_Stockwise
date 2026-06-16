@@ -18,6 +18,33 @@
 
 ---
 
+## Frontend
+
+### Component library
+
+UI primitives live in `client/src/components/ui/` and are managed by [shadcn/ui](https://ui.shadcn.com/). They are copied into the repo (not installed as a package) so you can edit them freely.
+
+Add a new component:
+
+```bash
+npx shadcn@latest add <component-name> --cwd client
+```
+
+### Path alias
+
+The `@/` alias maps to `client/src/`. Use it for all non-relative imports:
+
+```ts
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+```
+
+### Styleguide
+
+A live component showcase is available at `/styleguide` when the dev server is running. Add new components and design tokens there as they are introduced.
+
+---
+
 ## CI / GitHub Actions
 
 Runs on every push and PR to `master`. Skips on docs, images, and markdown changes.
