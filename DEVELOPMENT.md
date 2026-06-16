@@ -38,13 +38,13 @@ Jobs run in parallel. A failing step fails the pipeline immediately.
 ### Server (Jest + ts-jest)
 
 ```bash
-cd server && npm test           # run once
-cd server && npm run test:watch # watch mode
+npm test -w server           # run once
+npm run test:watch -w server # watch mode
 ```
 
 ### Client (Vitest + React Testing Library)
 
 ```bash
-cd client && npm test           # run once
-cd client && npm run test:watch # watch mode (interactive)
+npm test -w client           # run once
+npm run test:watch -w client # watch mode (interactive)
 ```
