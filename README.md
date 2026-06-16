@@ -1,7 +1,7 @@
 # Stockwise
 
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
-![Pipeline](https://img.shields.io/github/actions/workflow/status/GeorgeLinardis/Lab_Stockwise/ci.yml?branch=master&label=pipeline)
+![Pipeline](https://github.com/GeorgeLinardis/Lab_Stockwise/actions/workflows/ci.yml/badge.svg)
 
 > A clean, fast stock evaluation tool for investors who want signal without the noise.
 
