@@ -15,6 +15,15 @@ The goal is to build something that actually does analysis, not just displays nu
 
 ---
 
+## Design
+
+> These are design mockups. The app is currently in development.
+
+![Dashboard](.github/assets/Dashboard.png)
+![Stock Analysis](.github/assets/Stock.png)
+
+---
+
 ## Stack
 
 | Layer | Technology |
