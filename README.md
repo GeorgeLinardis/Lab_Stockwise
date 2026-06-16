@@ -59,4 +59,24 @@ cd client && npm install && npm run dev
 cd server && npm install && npm run dev
 ```
 
+---
+
+## Testing
+
+```bash
+# Server — run once
+cd server && npm test
+
+# Server — watch mode
+cd server && npm run test:watch
+
+# Client — run once
+cd client && npm test
+
+# Client — watch mode
+cd client && npm run test:watch
+```
+
+See [DEVELOPMENT.md](./DEVELOPMENT.md) for test file conventions.
+
 
