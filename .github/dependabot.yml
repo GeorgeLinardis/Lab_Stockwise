@@ -17,6 +17,12 @@ updates:
 
   # Keeps GitHub Actions pinned to up-to-date commit SHAs.
   # Without this, actions stay on whatever SHA was pinned when first added.
+  - package-ecosystem: "npm"
+    directory: "/db"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
