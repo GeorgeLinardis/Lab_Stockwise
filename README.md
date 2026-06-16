@@ -1,10 +1,7 @@
 # Stockwise
 
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
-![Build](https://img.shields.io/badge/build-passing-brightgreen)
-![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
-![Coverage](https://img.shields.io/badge/coverage-0%25-red)
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Pipeline](https://img.shields.io/github/actions/workflow/status/GeorgeLinardis/Lab_Stockwise/ci.yml?branch=master&label=pipeline)
 
 > A clean, fast stock evaluation tool for investors who want signal without the noise.
 
@@ -77,6 +74,15 @@ cd client && npm test
 cd client && npm run test:watch
 ```
 
-See [DEVELOPMENT.md](./DEVELOPMENT.md) for test file conventions.
+---
 
+## CI
 
+Runs on every push and PR to `master`. Skips on docs and image changes.
+
+| Job | Steps |
+|---|---|
+| Server | install → type-check → build → test |
+| Client | install → type-check → lint → build → test |
+
+See [DEVELOPMENT.md](./DEVELOPMENT.md) for full conventions.

@@ -18,6 +18,21 @@
 
 ---
 
+## CI / GitHub Actions
+
+Runs on every push and PR to `master`. Skips on docs, images, and markdown changes.
+
+| Job | Steps |
+|---|---|
+| Server | install → type-check → build → test |
+| Client | install → type-check → lint → build → test |
+
+Jobs run in parallel. A failing step fails the pipeline immediately.
+
+**Note:** Server has no ESLint setup yet — lint is client-only for now.
+
+---
+
 ## Running Tests
 
 ### Server (Jest + ts-jest)
