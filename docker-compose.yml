@@ -16,5 +16,48 @@ services:
       timeout: 5s
       retries: 5
 
+  client:
+    build:
+      # root context so Docker can access the shared package-lock.json
+      context: .
+      dockerfile: ./client/Dockerfile
+    container_name: stockwise_client
+    # host_port:container_port — maps your machine's port to the container's port
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    volumes:
+      # sync local source into the container so changes reflect without rebuilding
+      - ./client:/app/client
+      # keep the container's node_modules separate — native binaries differ between Mac and Alpine
+      - /app/client/node_modules
+      # protect root node_modules — workspace symlinks resolve here
+      - /app/node_modules
+
+  server:
+    build:
+      # root context so Docker can access the shared package-lock.json
+      context: .
+      dockerfile: ./server/Dockerfile
+    container_name: stockwise_server
+    # host_port:container_port — maps your machine's port to the container's port
+    ports:
+      - "${PORT:-3001}:3001"
+    environment:
+      NODE_ENV: development
+      PORT: ${PORT:-3001}
+      # use the db service name as hostname — Docker resolves it internally
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      # sync local source into the container so changes reflect without rebuilding
+      - ./server:/app/server
+      # keep the container's node_modules separate — native binaries differ between Mac and Alpine
+      - /app/server/node_modules
+      # protect root node_modules — workspace symlinks resolve here
+      - /app/node_modules
 volumes:
   postgres_data:

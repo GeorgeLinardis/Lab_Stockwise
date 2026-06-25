@@ -1,6 +1,40 @@
 # Development Guide
 
+## Contents
+
+- [Project Structure](#project-structure)
+- [Conventions](#conventions)
+  - [Branch Names](#branch-names)
+  - [Test Files](#test-files)
+- [Frontend](#frontend)
+  - [Component Library](#component-library)
+  - [Path Alias](#path-alias)
+  - [Styleguide](#styleguide)
+- [CI / GitHub Actions](#ci--github-actions)
+- [Local Database](#local-database)
+- [Running Tests](#running-tests)
+
+---
+
+## Project Structure
+
+This repo uses **npm workspaces** with four packages: `client`, `server`, `shared`, and `db`. Workspaces are used specifically to share the `shared` package (types, utilities) between client and server without publishing it to npm. A single `package-lock.json` lives at the root and covers all packages.
+
+---
+
 ## Conventions
+
+### Branch Names
+
+```
+<type>-<issue_number>_<short-description>
+```
+
+e.g. `feat-18_router-app-shell`, `infra-17_base-components-styleguide`
+
+Types mirror commit types: `feat`, `fix`, `infra`, `docs`, `refactor`, `chore`.
+
+---
 
 ### Test Files
 
@@ -51,7 +85,7 @@ Runs on every push and PR to `master`. Skips on docs, images, and markdown chang
 
 | Job | Steps |
 |---|---|
-| Format | install → prettier check |
+| Format | install → prettier check (all packages) |
 | Server | install → lint → type-check → build → test |
 | Client | install → type-check → lint → build → test |
 | Shared | install → lint → type-check → build → test |
@@ -60,43 +94,39 @@ Run `npm run format` from root to auto-fix formatting before committing.
 
 Jobs run in parallel. A failing step fails the pipeline immediately.
 
-**Note:** Server has no ESLint setup yet — lint is client-only for now.
+### Automated workflows
+
+**Security audit** — runs `npm audit` every 5 days on client and server. Fails only on high or critical severity findings. Can also be triggered manually from the Actions UI.
+
+**Dependabot** — opens weekly PRs to update npm dependencies across all packages (`client`, `server`, `shared`, `db`) and to keep GitHub Actions pinned to up-to-date commit SHAs.
+
+---
+
+## Running locally with Docker
+
+Copy `.env.example` to `.env` and fill in credentials before first run.
+
+```bash
+docker compose up --build         # start all services (client, server, db)
+docker compose up -d              # start in background
+docker compose down               # stop all services
+docker compose up --build server  # rebuild and restart a single service
+```
+
+Exec into a running container:
+
+```bash
+docker exec -it stockwise_server sh
+docker exec -it stockwise_client sh
+```
 
 ---
 
 ## Local Database
 
-Requires Docker. Copy `.env.example` to `.env` and fill in credentials before first run.
-
 ```bash
-docker compose up -d              # start PostgreSQL
-
 npm run db:generate -w db         # generate SQL from schema changes
 npm run db:migrate -w db          # apply pending migrations
 npm run db:studio -w db           # open Drizzle Studio UI
 ```
 
----
-
-## Running Tests
-
-### Server (Jest + ts-jest)
-
-```bash
-npm test -w server           # run once
-npm run test:watch -w server # watch mode
-```
-
-### Client (Vitest + React Testing Library)
-
-```bash
-npm test -w client           # run once
-npm run test:watch -w client # watch mode (interactive)
-```
-
-### Shared (Jest)
-
-```bash
-npm test -w shared           # run once
-npm run test:watch -w shared # watch mode
-```
