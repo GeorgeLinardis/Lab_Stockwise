@@ -2,6 +2,18 @@
 
 ## Conventions
 
+### Branch Names
+
+```
+<type>-<issue_number>_<short-description>
+```
+
+e.g. `feat-18_router-app-shell`, `infra-17_base-components-styleguide`
+
+Types mirror commit types: `feat`, `fix`, `infra`, `docs`, `refactor`, `chore`.
+
+---
+
 ### Test Files
 
 - Unit tests live colocated next to the file they test, using the `.test.ts` suffix
