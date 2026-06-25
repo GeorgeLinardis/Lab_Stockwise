@@ -38,10 +38,18 @@ The goal is to build something that actually does analysis, not just displays nu
 ## Architecture
 
 ```mermaid
-graph TD
-  Client["Client<br/>React + Vite"]
-  Server["Server<br/>Express + TypeScript"]
-  DB["PostgreSQL"]
+graph LR
+  subgraph client ["🐳 client"]
+    Client["React + Vite"]
+  end
+
+  subgraph server ["🐳 server"]
+    Server["Express + TypeScript"]
+  end
+
+  subgraph db ["🐳 db"]
+    DB["PostgreSQL"]
+  end
 
   Client -->|REST API| Server
   Server --> DB
@@ -61,6 +69,7 @@ stockwise/
 │       └── lib/        # shared utilities (cn, etc.)
 ├── server/             # Express API
 │   └── src/
+├── shared/             # shared types and utilities (used by client and server)
 ├── db/                 # Drizzle ORM — schema, migrations, db client
 │   └── src/
 │       ├── schema/
@@ -73,12 +82,22 @@ stockwise/
 
 ## Running locally
 
+Requires Docker. Copy `.env.example` to `.env` and fill in credentials before first run.
+
+```bash
+docker compose up --build
+```
+
+All three services start together: PostgreSQL, the Express server, and the React client.
+
+To run without Docker:
+
 ```bash
 # Frontend
-cd client && npm install && npm run dev
+npm run dev -w client
 
 # Backend
-cd server && npm install && npm run dev
+npm run dev -w server
 ```
 
 ---
@@ -86,28 +105,23 @@ cd server && npm install && npm run dev
 ## Testing
 
 ```bash
-# Server — run once
-cd server && npm test
+# Server
+npm test -w server
+npm run test:watch -w server
 
-# Server — watch mode
-cd server && npm run test:watch
+# Client
+npm test -w client
+npm run test:watch -w client
 
-# Client — run once
-cd client && npm test
-
-# Client — watch mode
-cd client && npm run test:watch
+# Shared
+npm test -w shared
+npm run test:watch -w shared
 ```
 
 ---
 
 ## CI
 
-Runs on every push and PR to `master`. Skips on docs and image changes.
-
-| Job | Steps |
-|---|---|
-| Server | install → type-check → build → test |
-| Client | install → type-check → lint → build → test |
+Runs on every push and PR to `master`. Includes format check, lint, type-check, build, and test across all packages. Security audit runs every 5 days. Dependabot opens weekly dependency update PRs.
 
 See [DEVELOPMENT.md](./DEVELOPMENT.md) for full conventions.
