@@ -1,6 +1,6 @@
 # Database
 
-PostgreSQL via Drizzle ORM. Schema lives in `db/src/schema/`. Full design spec: [designs/designs.md](./designs/designs.md).
+PostgreSQL via Drizzle ORM. Schema lives in `db/src/schema/`. 
 
 ## Current tables
 
