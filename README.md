@@ -124,4 +124,8 @@ npm run test:watch -w shared
 
 Runs on every push and PR to `master`. Includes format check, lint, type-check, build, and test across all packages. Security audit runs every 5 days. Dependabot opens weekly dependency update PRs.
 
+
+## More resources
+
 See [DEVELOPMENT.md](./DEVELOPMENT.md) for full conventions.
+See [DATABASE.md](./DATABASE.md) for schema, tables, and relationships.

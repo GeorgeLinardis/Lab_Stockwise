@@ -1,7 +1,8 @@
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
-import { sql } from "drizzle-orm";
-
-// userRelations will be defined here when relations are added
+import { relations, sql } from "drizzle-orm";
+import portfolioItem from "./portfolioItem";
+import watchlistItem from "./watchlistItem";
+import settings from "./settings";
 
 const user = pgTable("users", {
   id: text("id")
@@ -16,5 +17,14 @@ const user = pgTable("users", {
     .defaultNow()
     .$onUpdateFn(() => new Date().toISOString()),
 });
+
+export const userRelations = relations(user, ({ many, one }) => ({
+  portfolioItems: many(portfolioItem),
+  watchlistItems: many(watchlistItem),
+  settings: one(settings, {
+    fields: [user.id],
+    references: [settings.userId],
+  }),
+}));
 
 export default user;
