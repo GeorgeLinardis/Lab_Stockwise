@@ -127,5 +127,5 @@ Runs on every push and PR to `master`. Includes format check, lint, type-check, 
 
 ## More resources
 
-See [DEVELOPMENT.md](./DEVELOPMENT.md) for full conventions.
+See [DEVELOPMENT.md](./DEVELOPMENT.md) for full conventions.  
 See [DATABASE.md](./DATABASE.md) for schema, tables, and relationships.
